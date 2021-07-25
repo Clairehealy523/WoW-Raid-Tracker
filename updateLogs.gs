@@ -47,15 +47,19 @@ function updateLogs() {
     var characterName = activeSheet.getRange(x, 1).getValue();
 
     // If the value of the third column is equal to Tank, DPS (Melee) or DPS (Ranged) 
-    if (activeSheet.getRange(x, 3).getValue() == "Tank" || activeSheet.getRange(x, 3).getValue() == "DPS (Melee)" || activeSheet.getRange(x, 3).getValue() == "DPS (Ranged)") {
+    if (activeSheet.getRange(x, 3).getValue() == "Tank" || 
+        activeSheet.getRange(x, 3).getValue() == "DPS (Melee)" || 
+        activeSheet.getRange(x, 3).getValue() == "DPS (Ranged)") {
 
       // Query based on the characters name, realm and metric being dps then set response equal to warcraftLogsApi
-      var warcraftLogsApi = 'https://www.warcraftlogs.com/api/v2/client?query={characterData{character(name:"' + characterName + '",serverSlug:"' + realm + '",serverRegion:"us"){normal: zoneRankings(difficulty:3, metric: dps)heroic: zoneRankings(difficulty:4, metric: dps)mythic: zoneRankings(difficulty: 5, metric: dps)}}}'
+      var warcraftLogsApi = 'https://www.warcraftlogs.com/api/v2/client?query={characterData{character(name:"' 
+      + characterName + '",serverSlug:"' + realm + '",serverRegion:"us"){normal: zoneRankings(difficulty:3, metric: dps)heroic: zoneRankings(difficulty:4, metric: dps)mythic: zoneRankings(difficulty: 5, metric: dps)}}}'
     }
     // Else the value of the third column is equal to healer
     else {
       // Query based on the characters name, realm and metric being hps then set response equal to warcraftLogsApi
-      var warcraftLogsApi = 'https://www.warcraftlogs.com/api/v2/client?query={characterData{character(name:"' + characterName + '",serverSlug:"' + realm + '",serverRegion:"us"){normal: zoneRankings  (difficulty:3, metric: hps)heroic: zoneRankings(difficulty:4, metric: hps)mythic: zoneRankings(difficulty: 5, metric: hps)}}}'
+      var warcraftLogsApi = 'https://www.warcraftlogs.com/api/v2/client?query={characterData{character(name:"' 
+      + characterName + '",serverSlug:"' + realm + '",serverRegion:"us"){normal: zoneRankings  (difficulty:3, metric: hps)heroic: zoneRankings(difficulty:4, metric: hps)mythic: zoneRankings(difficulty: 5, metric: hps)}}}'
     }
     // Calls the encodeURI function on the warcraftLogsApi variable
     var url = encodeURI(warcraftLogsApi);
