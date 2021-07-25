@@ -30,7 +30,9 @@ function updateRaiderIO() {
       // Tries to make the API call
       try {
         // Calls UrlFetchApp.fetch() based on the realm and characters name
-        var mPlusResponse = UrlFetchApp.fetch("raider.io/api/v1/characters/profile?region=us&realm=" + realm + "&name=" + characterName + "&fields=mythic_plus_scores_by_season%3Acurrent%2Cmythic_plus_weekly_highest_level_runs");
+        var mPlusResponse = UrlFetchApp.fetch("raider.io/api/v1/characters/profile?region=us&realm=" 
+                                              + realm + "&name=" + characterName
+                                              + "&fields=mythic_plus_scores_by_season%3Acurrent%2Cmythic_plus_weekly_highest_level_runs");
       }
       // Catch any WebExceptions and increment the row (x)
       catch (WebException) {
