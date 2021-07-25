@@ -6,13 +6,11 @@ function executeAll(){
   updateLogs();
   updateRaiderIO();
 }
-
 /**
  * Function executeAllDatabase: Executes all database functions
  */
 function executeAllDatabase(){
   populateItemLevel()
-  populateParses()
-  populateMythicPlus()
-
+  populateLogs()
+  populateRaiderIO()
 }
