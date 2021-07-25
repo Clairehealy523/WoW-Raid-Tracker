@@ -1,5 +1,5 @@
 /**
- * Function updateSpreadsheet: Updates character information on the spreadsheet
+ * Function updateSpreadsheet: Updates the Class, iLevel, Armor Type, Covenant and Renown Lvl columns of the spreadsheet
  */
 function updateSpreadsheet() {
 
