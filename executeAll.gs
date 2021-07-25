@@ -2,7 +2,7 @@
  * Function executeAll: Executes all update functions 
  */
 function executeAll(){
-  popSpreadSheet();
+  updateSpreadsheet();
   updateLogs();
   updateRaiderIO();
 }
