@@ -3,8 +3,9 @@
  */
 function onOpen() {
   try {
+
     // Tries to call getUi() function
-    app = SpreadsheetApp.getUi();
+    var app = SpreadsheetApp.getUi();
 
     // If there's an error catch it and log error message
   } catch (error) {
@@ -24,9 +25,21 @@ function onOpen() {
         .addItem('Update Raider.io', 'updateRaiderIO'))
       // Adds a seperator to the menu
       .addSeparator()
-      // Adds item to call the executeAllDatabase function
-      .addItem('Populate Database', 'executeAllDatabase')
+      // Adds item to call the populateDatabase function
+      .addItem('Populate Database', 'populateDatabase')
+      //Adds item to call the createDatabaseTable function 
+      .addItem('Populate All Data', 'createDatabaseTable')
+      // Adds a seperator to the menu
+      .addSeparator()
+      // Adds a sub menu called Generate Charts
+      .addSubMenu(SpreadsheetApp.getUi().createMenu('Generate Charts')
+        // Adds executeRedCharts, executeMojitoCharts, executeBirdCharts and executeAllCharts to the sub menu
+        .addItem('Red Team', 'executeRedCharts')
+        .addItem('Mojito Team', 'executeMojitoCharts')
+        .addItem('Bird Team', 'executeBirdCharts')
+        .addItem('All Teams', 'executeAllCharts'))
       // Adds the menu to the spreadsheets UI
-      .addToUi();
+      .addToUi()
   }
+
 }
