@@ -3,6 +3,7 @@ This repository is a comprehensive raid tracker addon for World of Warcraft that
 * World of Warcraft Character Data API's 
 * Raider.io API's 
 * WarcraftLogs API's 
+
 Once data in the spreadsheet is populated the statistics panel on the right will display key information on your raid group such as the group composition, armor type, covenant information and more. In addition to automatically populating the spreadsheet, this addon offers many more features including the ability to programmatically create charts in the Create Charts spreadsheet in order to view charts on your raid teams performance and all of the raid teams in your guilds performance. Through the use of the Spreadsheet Updater menu you can choose to update data in the spreadsheet whenever you like, but triggers are also set up to update the spreadsheet automatically every day at 12am Pacific Standard Time (PST). These triggers also upload data to the the database and update the All Data spreadsheet so data will be updated after each day. For information on how to setup up your own team with this addon please reference the instructions section below:
 
 ## Instructions
@@ -21,5 +22,14 @@ Once data in the spreadsheet is populated the statistics panel on the right will
 
 ## Menu Options
 * **Populate Spreadsheet**: Populates all spreadsheets (except All Data and Create Charts) with new information pulled from several different API's. Before running this option make sure you fill out the **Character**, **Role** and **Realm** columns with accurate data. 
-* **Update**
-  *  
+* **Update**:
+              * **Update Spreadsheet**: Updates the Role, iLevel, Armor Type, Covenant, and Covenant Lvl columns of the current active spreadsheet.
+              * **Update WarcraftLogs**: Updates the N Avg Parse, H Avg Parse and M Avg Parse columns of the current active spreadsheet.
+              * **Update Raider.io**: Updates the Weekly M+, Total Keys/Wekk and M+ Score columns of the current active spreadsheet. 
+* **Populate Database**: Pushes data from each of the raid team spreadsheets to the database.
+* **Populate All Data**: Pulls data from the database and populates the **All Data** spreadsheet.
+* **Generate Charts**:
+              * **Red Team**: Generates charts in the **Create Charts** sheet for Red team.
+              * **Mojito Team**: Generates charts in the **Create Charts** sheet for Mojito team.
+              * **Bird Team**: Generates charts in the **Create Charts** sheet for Bird team.
+              * **All Teams**: Generates charts in the **Create Charts** sheet for all teams. 
