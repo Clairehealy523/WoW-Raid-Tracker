@@ -1,0 +1,36 @@
+/**
+ * Function createDatabaseTable: Adds data pulled from that database into the All Data sheet 
+ */
+function createDatabaseTable() {
+  //Creates a select statement
+  var results = stmt.executeQuery("SELECT * FROM Characters");
+
+  // Initializes the row (count) equal to 2
+  var count = 2;
+
+  // While there are still rows in the database
+  while (results.next()) {
+
+    //Insert data into the allData spreadsheet
+    allData.getRange(count, 1).setValue(results.getString(1)); // Name
+    allData.getRange(count, 2).setValue(results.getString(2)); // Class
+    allData.getRange(count, 3).setValue(results.getString(3)); // Role
+    allData.getRange(count, 4).setValue(results.getString(8)); // Item Level
+    allData.getRange(count, 5).setValue(results.getString(4)); // Armor Type
+    allData.getRange(count, 6).setValue(results.getString(12)); // Normal Parse
+    allData.getRange(count, 7).setValue(results.getString(13)); // Heroic Parse
+    allData.getRange(count, 8).setValue(results.getString(14)); // Mythic Parse
+    allData.getRange(count, 9).setValue(results.getString(5)); // Covenant
+    allData.getRange(count, 10).setValue(results.getString(6)); // Renown Lvl
+    allData.getRange(count, 11).setValue(results.getString(9)); // Weekly Highest M+
+    allData.getRange(count, 12).setValue(results.getString(10)); // Total/Week 
+    allData.getRange(count, 13).setValue(results.getString(11)); // Score
+    allData.getRange(count, 14).setValue(results.getString(15)); // M+ Update
+    allData.getRange(count, 15).setValue(results.getString(7)); // Team
+
+    //Increment count
+    count++;
+    
+    }//End while loop
+    
+  }//End function
