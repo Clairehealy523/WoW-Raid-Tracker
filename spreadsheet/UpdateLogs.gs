@@ -1,32 +1,43 @@
 /**
  * Function updateLogs: Updates the N Avg. Parse, H Avg. Parse, and M Avg. Parse columns of the spreadsheet
  */
-function updateLogs() {
+function updateLogs(activeSheets) {
 
-  // Gets the properties of my script and sets it equal to properties
-  var properties = PropertiesService.getScriptProperties();
+  //If activeSheets is not null
+  if(activeSheets != null ){
 
-  // Gets the active spreadsheet and sets it equal to activeSheet
-  var activeSheet = SpreadsheetApp.getActive().getActiveSheet();
+    //Set activeSheet equal to activeSheets
+    activeSheet = activeSheets;
+  }
+  //Else activeSheets is null
+  else{
+    // Gets the active spreadsheet and sets it equal to activeSheet
+    activeSheet = SpreadsheetApp.getActive().getActiveSheet();
+  }
 
   // Initializes the row (x) equal to 3
   var x = 3;
 
   // Sets the tokenURL equal the the access token URL
-  var tokenURL = 'https://www.warcraftlogs.com/oauth/token';
+  var tokenURL = properties.getProperty('logsURL');
 
   // Retrieves the client_id and client_secret and sets the payload
   var formData = {
     'client_id': properties.getProperty('warcraftlogs_client_id'),
     'client_secret': properties.getProperty('warcraftlogs_client_secret'),
-    'grant_type': 'client_credentials'
+    'grant_type': properties.getProperty('grant_type')
   }
-
+  // Attempts to generate a new token
+  try{
   // HTTP request to generate a new access token
   var tokenResponse = UrlFetchApp.fetch(tokenURL, {
     method: 'POST',
     payload: formData,
   })
+  // Catches any WebExceptions
+  }catch(WebException){
+    console.log('Error while generating Bearer token')
+  }
 
   // Using the tokenResponse get the ContentText
   var tokenJSON = tokenResponse.getContentText();
@@ -47,19 +58,15 @@ function updateLogs() {
     var characterName = activeSheet.getRange(x, 1).getValue();
 
     // If the value of the third column is equal to Tank, DPS (Melee) or DPS (Ranged) 
-    if (activeSheet.getRange(x, 3).getValue() == "Tank" || 
-        activeSheet.getRange(x, 3).getValue() == "DPS (Melee)" || 
-        activeSheet.getRange(x, 3).getValue() == "DPS (Ranged)") {
+    if (activeSheet.getRange(x, 3).getValue() == "Tank" || activeSheet.getRange(x, 3).getValue() == "DPS (Melee)" || activeSheet.getRange(x, 3).getValue() == "DPS (Ranged)") {
 
       // Query based on the characters name, realm and metric being dps then set response equal to warcraftLogsApi
-      var warcraftLogsApi = 'https://www.warcraftlogs.com/api/v2/client?query={characterData{character(name:"' 
-      + characterName + '",serverSlug:"' + realm + '",serverRegion:"us"){normal: zoneRankings(difficulty:3, metric: dps)heroic: zoneRankings(difficulty:4, metric: dps)mythic: zoneRankings(difficulty: 5, metric: dps)}}}'
+      var warcraftLogsApi = 'https://www.warcraftlogs.com/api/v2/client?query={characterData{character(name:"' + characterName + '",serverSlug:"' + realm + '",serverRegion:"us"){normal: zoneRankings(difficulty:3, metric: dps)heroic: zoneRankings(difficulty:4, metric: dps)mythic: zoneRankings(difficulty: 5, metric: dps)}}}'
     }
     // Else the value of the third column is equal to healer
     else {
       // Query based on the characters name, realm and metric being hps then set response equal to warcraftLogsApi
-      var warcraftLogsApi = 'https://www.warcraftlogs.com/api/v2/client?query={characterData{character(name:"' 
-      + characterName + '",serverSlug:"' + realm + '",serverRegion:"us"){normal: zoneRankings  (difficulty:3, metric: hps)heroic: zoneRankings(difficulty:4, metric: hps)mythic: zoneRankings(difficulty: 5, metric: hps)}}}'
+      var warcraftLogsApi = 'https://www.warcraftlogs.com/api/v2/client?query={characterData{character(name:"' + characterName + '",serverSlug:"' + realm + '",serverRegion:"us"){normal: zoneRankings  (difficulty:3, metric: hps)heroic: zoneRankings(difficulty:4, metric: hps)mythic: zoneRankings(difficulty: 5, metric: hps)}}}'
     }
     // Calls the encodeURI function on the warcraftLogsApi variable
     var url = encodeURI(warcraftLogsApi);
@@ -68,6 +75,7 @@ function updateLogs() {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + token
     }
+    try{
     // Calls UrlFetchApp.fetch() to get the HTTP request response
     var parseResponse = UrlFetchApp.fetch(url, {
       method: 'POST',
@@ -76,6 +84,10 @@ function updateLogs() {
         'Authorization': 'Bearer ' + token
       }
     })
+    //Catches any WebExceptions and increments the counter
+    }catch(WebException){
+      x++; 
+    }
 
     // Using the parseResponse get the ContenText
     var parseJSON = parseResponse.getContentText();
