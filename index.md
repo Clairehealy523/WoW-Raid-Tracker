@@ -1,4 +1,7 @@
 
+# About the Programmer
+Hello my name is Claire Healy and welcome to my GitHub project page! Like many of you I'm extremely passionate about the game World of Warcraft and I wanted to create something that would allow me to track both my individual progress as a player, but also track my raid teams progress as someone who raid leads a large group. Below you will find instructions on how to get started using this project to track your own raid teams and more information on how this addon actually works! Thank you for taking the time visiting my page and hopefully this addon can be of use to you! 
+
 # WoW-Raid-Tracker
 This repository is a comprehensive raid tracker addon for World of Warcraft that is meant to be ran and implemented in Google Sheets. This program automatically populates data from several different API's including the following:
 * World of Warcraft Character Data API's 
@@ -43,40 +46,12 @@ Once data in the spreadsheet is populated the statistics panel on the right will
 5. Once in this file make the following changes the the code: 
 6. `var redData = SpreadsheetApp.getActive().getSheetByName('Your-name-here');` 
 
-## Welcome to GitHub Pages
-
-You can use the [editor on GitHub](https://github.com/Clairehealy523/WoW-Raid-Tracker/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Clairehealy523/WoW-Raid-Tracker/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+## How do I Remove Teams from the Spreadsheet? 
+1. Right click on the tab of the spreadsheet you would like to remove (Do not remove the All Data and Create Charts sheets) 
+2. Select the **Delete** option. 
+3. Select the **Tools** option on the top of the spreadsheet then select **Script Editor**.
+4. Once in the script editor select the **Variables.gs** file.
+5. Once in this file remove the following lines: 
+`var (team-name)Data = SpreadsheetApp.getActive().getSheetByName('team-you-removed');
+sheets.push(yourData, yourData);`
+6. Once those lines are modified you can go in and delete the <name>TeamCharts.gs file as well as remove the execute<Team>Charts function in **ExecuteCharts.gs**
