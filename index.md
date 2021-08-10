@@ -41,7 +41,7 @@ Once data in the spreadsheet is populated the statistics panel on the right will
 3. Select the **Tools** option on the top of the spreadsheet then select **Script Editor**.
 4. Once in the script editor select the **Variables.gs** file.
 5. Once in this file make the following changes the the code: 
-6. 'var redData = SpreadsheetApp.getActive().getSheetByName('Your-name-here'); 
+6. `var redData = SpreadsheetApp.getActive().getSheetByName('Your-name-here');` 
 
 ## Welcome to GitHub Pages
 
