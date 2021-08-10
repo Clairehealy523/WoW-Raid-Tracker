@@ -23,9 +23,9 @@ Once data in the spreadsheet is populated the statistics panel on the right will
 ## Menu Options
 * **Populate Spreadsheet**: Populates all spreadsheets (except All Data and Create Charts) with new information pulled from several different API's. Before running this option make sure you fill out the **Character**, **Role** and **Realm** columns with accurate data. 
 * **Update**:
-              * **Update Spreadsheet**: Updates the Role, iLevel, Armor Type, Covenant, and Covenant Lvl columns of the current active spreadsheet.
-              * **Update WarcraftLogs**: Updates the N Avg Parse, H Avg Parse and M Avg Parse columns of the current active spreadsheet.
-              * **Update Raider.io**: Updates the Weekly M+, Total Keys/Wekk and M+ Score columns of the current active spreadsheet. 
+  * **Update Spreadsheet**: Updates the Role, iLevel, Armor Type, Covenant, and Covenant Lvl columns of the current active spreadsheet.
+  * **Update WarcraftLogs**: Updates the N Avg Parse, H Avg Parse and M Avg Parse columns of the current active spreadsheet.
+  * **Update Raider.io**: Updates the Weekly M+, Total Keys/Wekk and M+ Score columns of the current active spreadsheet. 
 * **Populate Database**: Pushes data from each of the raid team spreadsheets to the database.
 * **Populate All Data**: Pulls data from the database and populates the **All Data** spreadsheet.
 * **Generate Charts**:
