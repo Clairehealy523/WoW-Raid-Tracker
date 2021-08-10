@@ -56,5 +56,6 @@ Once data in the spreadsheet is populated the statistics panel on the right will
 
 `var (team-name)Data = SpreadsheetApp.getActive().getSheetByName('team-you-removed');`
 
-`\nsheets.push(yourData, yourData);`
+`sheets.push(yourData, yourData);`
+
 6. Once those lines are modified you can go in and delete the (name)TeamCharts.gs file as well as remove the execute(Team)Charts function in **ExecuteCharts.gs**
