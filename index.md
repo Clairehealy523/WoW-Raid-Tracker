@@ -38,6 +38,7 @@ Once data in the spreadsheet is populated the statistics panel on the right will
   * **Bird Team**: Generates charts in the **Create Charts** sheet for Bird team.
   * **All Teams**: Generates charts in the **Create Charts** sheet for all teams. 
   * 
+
 ## How Do I Change my Team Names? 
 1. Right click on the tab you would like to change the name of.
 2. Select **Rename** and rename your team.
@@ -52,6 +53,7 @@ Once data in the spreadsheet is populated the statistics panel on the right will
 3. Select the **Tools** option on the top of the spreadsheet then select **Script Editor**.
 4. Once in the script editor select the **Variables.gs** file.
 5. Once in this file remove the following lines: 
-`var (team-name)Data = SpreadsheetApp.getActive().getSheetByName('team-you-removed');
-sheets.push(yourData, yourData);`
+
+`var (team-name)Data = SpreadsheetApp.getActive().getSheetByName('team-you-removed');`
+`sheets.push(yourData, yourData);`
 6. Once those lines are modified you can go in and delete the (name)TeamCharts.gs file as well as remove the execute(Team)Charts function in **ExecuteCharts.gs**
