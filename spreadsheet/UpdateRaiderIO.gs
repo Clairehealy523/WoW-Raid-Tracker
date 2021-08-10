@@ -1,10 +1,19 @@
 /**
  * Function updateRaiderIO: Updates the Weekly M+, Keys/Week and M+ Score columns of the spreadsheet
  */
-function updateRaiderIO() {
 
-  // Gets the current active spreadsheet and sets it equal to activeSheet
-  var activeSheet = SpreadsheetApp.getActive().getActiveSheet();
+function updateRaiderIO(activeSheets) {
+  //If activeSheets isn't null
+  if (activeSheets != null) {
+    //Set activeSheet equal to activeSheets
+    activeSheet = activeSheets;
+  }
+  //Else activeSheets is null
+  else {
+    
+    // Gets the current active spreadsheet and sets it equal to activeSheet
+    var activeSheet = SpreadsheetApp.getActive().getActiveSheet();
+  }
 
   // Initializes the row (x) equal to 3
   var x = 3;
@@ -30,9 +39,7 @@ function updateRaiderIO() {
       // Tries to make the API call
       try {
         // Calls UrlFetchApp.fetch() based on the realm and characters name
-        var mPlusResponse = UrlFetchApp.fetch("raider.io/api/v1/characters/profile?region=us&realm=" 
-                                              + realm + "&name=" + characterName
-                                              + "&fields=mythic_plus_scores_by_season%3Acurrent%2Cmythic_plus_weekly_highest_level_runs");
+        var mPlusResponse = UrlFetchApp.fetch("raider.io/api/v1/characters/profile?region=us&realm=" + realm + "&name=" + characterName + "&fields=mythic_plus_scores_by_season%3Acurrent%2Cmythic_plus_weekly_highest_level_runs");
       }
       // Catch any WebExceptions and increment the row (x)
       catch (WebException) {
@@ -41,7 +48,7 @@ function updateRaiderIO() {
 
       // Using the mPlusResonse get the ContentText
       var mPlusJSON = mPlusResponse.getContentText();
-    
+
       // Parse the mPlusJSON into JSON and set it equal to the mPlusData variable
       var mPlusData = JSON.parse(mPlusJSON);
       // If mythic plus weekly highest level runs is undefined or empty set maxMPlus equal to 0
@@ -55,7 +62,7 @@ function updateRaiderIO() {
 
           // Push the highest level runs into the mPlus array
           mPlus.push(mPlusData["mythic_plus_weekly_highest_level_runs"][count]["mythic_level"])
-          
+
           // Increment count 
           count++;
         }
