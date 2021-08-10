@@ -29,7 +29,7 @@ Once data in the spreadsheet is populated the statistics panel on the right will
 * **Populate Database**: Pushes data from each of the raid team spreadsheets to the database.
 * **Populate All Data**: Pulls data from the database and populates the **All Data** spreadsheet.
 * **Generate Charts**:
-              * **Red Team**: Generates charts in the **Create Charts** sheet for Red team.
-              * **Mojito Team**: Generates charts in the **Create Charts** sheet for Mojito team.
-              * **Bird Team**: Generates charts in the **Create Charts** sheet for Bird team.
-              * **All Teams**: Generates charts in the **Create Charts** sheet for all teams. 
+  * **Red Team**: Generates charts in the **Create Charts** sheet for Red team.
+  * **Mojito Team**: Generates charts in the **Create Charts** sheet for Mojito team.
+  * **Bird Team**: Generates charts in the **Create Charts** sheet for Bird team.
+  * **All Teams**: Generates charts in the **Create Charts** sheet for all teams. 
