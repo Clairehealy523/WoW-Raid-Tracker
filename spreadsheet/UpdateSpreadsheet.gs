@@ -1,34 +1,44 @@
 /**
  * Function updateSpreadsheet: Updates the Class, iLevel, Armor Type, Covenant and Renown Lvl columns of the spreadsheet
  */
-function updateSpreadsheet() {
+function updateSpreadsheet(activeSheets) {
 
-  // Gets the properties of my script and sets it equal to properties
-  var properties = PropertiesService.getScriptProperties();
+  //If activeSheets isn't null
+  if (activeSheets != null) {
 
-  // Gets the active spreadsheet and sets it equal to activeSheet
-  var activeSheet = SpreadsheetApp.getActive().getActiveSheet();
+    //Set activeSheet equal to activeSheets
+    activeSheet = activeSheets;
+  }
 
-  //var activeSheet = app.getActive().getActiveSheet();
-
+  //Else activeSheets is null
+  else {
+    
+    // Gets the current active spreadsheet and sets it equal to activeSheet
+    var activeSheet = SpreadsheetApp.getActive().getActiveSheet();
+  }
+  
   // Initializes the row (x) equal to 3
   var x = 3;
 
   // Sets the tokenURL equal the the access token URL
-  var tokenURL = 'https://us.battle.net/oauth/token';
+  var tokenURL = properties.getProperty('wowURL');
 
   // Retrieves the client_id and client_secret and sets the payload
   var formData = {
     'client_id': properties.getProperty('client_id'),
     'client_secret': properties.getProperty('client_secret'),
-    'grant_type': 'client_credentials'
+    'grant_type': properties.getProperty('grant_type')
   }
 
   // HTTP request to generate a new access token
+  try{
   var tokenResponse = UrlFetchApp.fetch(tokenURL, {
     method: 'POST',
     payload: formData,
   })
+  }catch(WebException){
+    console.log('Error while generating Bearer token')
+  }
 
   // Using the tokenResponse get the ContentText
   var tokenJSON = tokenResponse.getContentText();
@@ -51,10 +61,7 @@ function updateSpreadsheet() {
       // Try to make an API call 
       try {
         // Calls UrlFetchApp.fetch() based on the realm, characters name and generated access token
-        var ilevelResponse = UrlFetchApp.fetch('https://us.api.blizzard.com/profile/wow/character/' 
-                                               + realm.toLowerCase() + '/' + characterName.toLowerCase() 
-                                               + '?namespace=profile-us&locale=en_US&access_token=' 
-                                               + accessToken.access_token)
+        var ilevelResponse = UrlFetchApp.fetch('https://us.api.blizzard.com/profile/wow/character/' + realm.toLowerCase() + '/' + characterName.toLowerCase() + '?namespace=profile-us&locale=en_US&access_token=' + accessToken.access_token)
 
       }
       // Catch any WebExceptions and increment the row (x)
@@ -78,29 +85,66 @@ function updateSpreadsheet() {
 
       // Retrieves the characters item level from JSON and sets it equal to characteriLevel
       var characteriLevel = iLevel.equipped_item_level;
+      var color; 
 
-      // Sets the value for row (x) and column two to the characters class
+      if(characterClass == "Death Knight"){
+        armorType = "Plate";
+        color = "#dd7e6b";
+      }
+      else if(characterClass == "Demon Hunter"){
+        armorType = "Leather";
+        color = "#8e7cc3";
+      }
+      else if(characterClass == "Druid"){
+        armorType = "Leather";
+        color = "#f6b26b";
+      }
+      else if(characterClass == "Hunter"){
+        armorType = "Mail";
+        color = "#6aa84f";
+      }
+      else if(characterClass == "Mage"){
+        armorType = "Cloth";
+        color = "#9fc5e8";
+      }
+      else if(characterClass == "Monk"){
+        armorType = "Leather";
+        color = "#00ffff";
+      }
+      else if(characterClass == "Paladin"){
+        armorType = "Plate";
+        color = "#f4cccc";
+      }
+      else if(characterClass == "Priest"){
+        armorType = "Cloth";
+        color = "#ffffff";
+      }
+      else if(characterClass == "Rogue"){
+        armorType = "Leather";
+        color = "#fff2cc";
+      }
+      else if(characterClass == "Shaman"){
+        armorType = "Mail";
+        color = "#6d9eeb";
+      }
+      else if(characterClass == "Warlock"){
+        armorType = "Cloth";
+        color = "#d9d2e9";
+      }
+      else if(characterClass == "Warrior"){
+        armorType = "Plate";
+        color = "#cca677";
+      }
+      else{
+        armorType = "INVALID";
+        color="#ffffff"
+      }
+
+      // Sets the value for row (x) and column 2 to the characters class
       activeSheet.getRange(x, 2).setValue(characterClass);
 
-      // If the characters class is Hunter or Shaman set armorType equal to Mail
-      if (characterClass == "Hunter" || characterClass == "Shaman") {
-        armorType = "Mail";
-      }
-
-      // Else if the characters class is Death Knight, Paladin or Warrior set armorType equal to Plate
-      else if (characterClass == "Death Knight" || characterClass == "Paladin" || characterClass == "Warrior") {
-        armorType = "Plate";
-      }
-
-      // Else if the characters class is Monk, Rogue, Demon Hunter or Druid set the armorType equal to Leather
-      else if (characterClass == "Monk" || characterClass == "Rogue" || characterClass == "Demon Hunter" || characterClass == "Druid") {
-        armorType = "Leather"
-      }
-
-      // Else set the armorType equal to cloth
-      else {
-        armorType = "Cloth";
-      }
+      // Sets the background color for row(x) and column 2
+      activeSheet.getRange(x, 2).setBackground(color);
 
       // Sets the value for row (x) and column 4 equal to the characters item level
       activeSheet.getRange(x, 4).setValue(characteriLevel);
@@ -124,3 +168,4 @@ function updateSpreadsheet() {
 
   } // End while loop
 } // End function
+
