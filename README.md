@@ -7,7 +7,7 @@ This repository is a comprehensive raid tracker addon for World of Warcraft that
 Once data in the spreadsheet is populated the statistics panel on the right will display key information on your raid group such as the group composition, armor type, covenant information and more. In addition to automatically populating the spreadsheet, this addon offers many more features including the ability to programmatically create charts in the Create Charts spreadsheet in order to view charts on your raid teams performance and all of the raid teams in your guilds performance. Through the use of the Spreadsheet Updater menu you can choose to update data in the spreadsheet whenever you like, but triggers are also set up to update the spreadsheet automatically every day at 12am Pacific Standard Time (PST). These triggers also upload data to the the database and update the All Data spreadsheet so data will be updated after each day. For information on how to setup up your own team with this addon please reference the instructions section below:
 
 ## Instructions
-1. Make a copy of the [WoW Raid Team Updater](https://docs.google.com/spreadsheets/d/1yW9cnvedqgJvrbbQxqKqn-X0ZnT6tPKRI8z3FcERCR8/edit?usp=sharing) Spreadsheet
+1. Make a copy of the [WoW Raid Team Updater](https://docs.google.com/spreadsheets/d/14i0NyqOaag-5aLMASlh5crrCuo6b3M7HWenIftOLjPc/edit?usp=sharing) Spreadsheet
 2. Fill out the **Character**, **Role**, and **Realm** columns, ensuring that everything is spelled properly
    **NOTE:** Make sure roles are filled out properly to specific constraints. Valid roles are the following and must be in this format:
    1. Tank
