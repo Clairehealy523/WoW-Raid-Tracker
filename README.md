@@ -20,6 +20,12 @@ Once data in the spreadsheet is populated the statistics panel on the right will
 6. Exit out of the Script Editor and go back to your spreadsheet then refresh the web page and a new menu will appear titled **Spreadsheet Updater**.
 7. Select the option you would like to run in the **Spreadsheet Updater** menu, you can view what each option does in the **Menu Items** section below. 
 
+## Video Links
+* [**General Walk Through**](https://drive.google.com/file/d/1oY1Idt2YaMAnqAS8C9cWHERFXsTjvgBO/view?usp=sharing)
+* [**Database Walk Through**](https://drive.google.com/file/d/1wUnlP0zmrm_xrCD1JTbigOO8YZVvmHpP/view?usp=sharing)
+* [**Reusable Code Walk Through**](https://drive.google.com/file/d/1vsjBVFk4Yj6jzyTmIgY0Q2RDPQy2J6kZ/view?usp=sharing)
+* [**Validation Walk Through**](https://drive.google.com/file/d/1Mr5p1CzYRKATFB-bUtBbjY_8nxNBn8U2/view?usp=sharing)
+
 ## Menu Options
 * **Populate Spreadsheet**: Populates all spreadsheets (except All Data and Create Charts) with new information pulled from several different API's. Before running this option make sure you fill out the **Character**, **Role** and **Realm** columns with accurate data. 
 * **Update**:
